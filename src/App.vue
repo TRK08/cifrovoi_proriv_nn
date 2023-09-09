@@ -3,22 +3,22 @@
       :theme="theme"
       :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides"
   >
-    <div class="app">
-      <n-layout embedded has-sider style="height: 100%; padding: 30px;">
-        <Sidebar />
-        <n-layout class="app__content">
-          <Header />
-          <router-view />
+    <n-notification-provider >
+      <div class="app">
+        <n-layout embedded has-sider style="height: 100%; padding: 30px;">
+          <Sidebar />
+          <n-layout class="app__content">
+            <router-view />
+          </n-layout>
         </n-layout>
-      </n-layout>
-    </div>
+      </div>
+    </n-notification-provider>
   </n-config-provider>
 </template>
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Sidebar from "@/components/UI/Sidebar.vue";
-import Header from "@/components/UI/Header.vue";
 import {storeToRefs} from "pinia";
 import {useGlobalStore} from "@/stores";
 
