@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  base: '/cifrovoi_proriv_nn/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
