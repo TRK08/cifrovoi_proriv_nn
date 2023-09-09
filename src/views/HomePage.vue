@@ -32,9 +32,9 @@
       <template v-if="fetchStatus === 'success'">
           <n-space align="center" :size="[50, 10]" style="margin-bottom: 50px;">
             <h2>Общий рейтинг компании {{result?.company_name}}:</h2>
-            <n-progress type="circle" :percentage="result.rating" v-if="result"  >
+            <n-progress type="circle" :stroke-width="10" :percentage="result.rating" v-if="result"  >
               <template #default>
-                {{result.rating_name}}
+                <span style="font-size: 30px">{{result.rating_name}}</span>
               </template>
             </n-progress>
           </n-space>
@@ -110,7 +110,7 @@ const downloadFile = async (evt: UploadFileInfo): Promise<IResult | void> => {
       result.value = res.data
       setTimeout(() => {
         fetchStatus.value = 'success'
-      }, 2000)
+      }, 1000)
     }
   } catch (e) {
     fetchStatus.value = 'error'
@@ -126,7 +126,7 @@ const sendText = async (): Promise<IResult | void> => {
       result.value = res.data
       setTimeout(() => {
         fetchStatus.value = 'success'
-      }, 2000)
+      }, 1000)
     }
   } catch (e) {
     fetchStatus.value = 'error'
