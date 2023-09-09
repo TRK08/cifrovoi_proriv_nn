@@ -44,7 +44,7 @@
               <n-divider style="margin-bottom: 1rem"/>
               <n-scrollbar style="max-height: 500px">
                 <ul>
-                  <li v-for="(item, idx) in result.positive" :key="item">
+                  <li v-for="(item, idx) in result?.positive" :key="item">
                     {{idx + 1}}.{{item}}
                   </li>
                 </ul>
@@ -55,7 +55,7 @@
               <n-divider style="margin-bottom: 1rem"/>
               <n-scrollbar style="max-height: 500px">
                 <ul>
-                  <li v-for="(item, idx) in result.negative" :key="item">
+                  <li v-for="(item, idx) in result?.negative" :key="item">
                     {{idx + 1}}.{{item}}
                   </li>
                 </ul>
@@ -79,13 +79,21 @@ import { ArchiveOutline } from '@vicons/ionicons5'
 import { useNotification } from 'naive-ui'
 import type { UploadFileInfo } from 'naive-ui'
 
+
+interface IResult {
+  positive: string[],
+  negative: string[],
+  rating: number,
+  rating_name: string
+}
+
 const notification = useNotification()
 
 const text = ref('')
 const fetchStatus = ref('init')
-const result = ref(null);
+const result = ref<IResult | null>(null);
 
-const downloadFile = async (evt: UploadFileInfo) => {
+const downloadFile = async (evt: UploadFileInfo): Promise<IResult | void> => {
   fetchStatus.value = 'loading'
   try {
     const formData = new FormData();
@@ -108,7 +116,7 @@ const downloadFile = async (evt: UploadFileInfo) => {
     console.log(e)
   }
 };
-const sendText = async () => {
+const sendText = async (): Promise<IResult | void> => {
   fetchStatus.value = 'loading'
   try {
     const res = await axios.post('https://13-50-75-136.nip.io/api/v1/ml/text', {text: text.value})
