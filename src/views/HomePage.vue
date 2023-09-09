@@ -97,6 +97,7 @@ const downloadFile = async (evt: UploadFileInfo): Promise<IResult | void> => {
   fetchStatus.value = 'loading'
   try {
     const formData = new FormData();
+    // @ts-ignore
     formData.append('file', evt?.file?.file);
 
     const res = await axios.post('https://13-50-75-136.nip.io/api/v1/ml/file', formData, {
