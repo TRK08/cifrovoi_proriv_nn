@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { h, Component } from 'vue'
+import { h, type Component } from 'vue'
 import { NIcon } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
 import {
