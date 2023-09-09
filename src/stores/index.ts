@@ -1,9 +1,9 @@
 import {defineStore} from "pinia";
-import {darkTheme} from 'naive-ui'
+import {darkTheme, type GlobalTheme } from 'naive-ui'
 
 
 interface IState {
-    theme: null | typeof darkTheme
+    theme: null | GlobalTheme
 }
 export const useGlobalStore = defineStore('global',  {
     state: (): IState => ({
