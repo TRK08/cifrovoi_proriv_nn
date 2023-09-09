@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <Header />
+    <AppHeader title="Главная страница" />
     <div class="home-page__content">
       <n-spin v-if="fetchStatus === 'loading'" size="large" style="width: 100%;" />
       <template v-if="fetchStatus === 'init'">
@@ -31,7 +31,7 @@
       </template>
       <template v-if="fetchStatus === 'success'">
           <n-space align="center" :size="[50, 10]" style="margin-bottom: 50px;">
-            <h2>Общий рейтинг:</h2>
+            <h2>Общий рейтинг компании {{result?.company_name}}:</h2>
             <n-progress type="circle" :percentage="result.rating" v-if="result"  >
               <template #default>
                 {{result.rating_name}}
@@ -71,20 +71,20 @@
 </template>
 
 <script setup lang="ts">
-
-import Header from "@/components/UI/Header.vue";
 import axios from "axios";
 import {ref, watch} from "vue";
 import { ArchiveOutline } from '@vicons/ionicons5'
 import { useNotification } from 'naive-ui'
 import type { UploadFileInfo } from 'naive-ui'
+import AppHeader from "@/components/UI/AppHeader.vue";
 
 
 interface IResult {
   positive: string[],
   negative: string[],
   rating: number,
-  rating_name: string
+  rating_name: string,
+  company_name: string
 }
 
 const notification = useNotification()
